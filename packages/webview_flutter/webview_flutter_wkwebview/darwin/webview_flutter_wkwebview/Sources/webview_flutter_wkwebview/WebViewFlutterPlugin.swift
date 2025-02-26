@@ -28,7 +28,11 @@ public class WebViewFlutterPlugin: NSObject, FlutterPlugin {
     let plugin = WebViewFlutterPlugin(binaryMessenger: binaryMessenger)
 
     let viewFactory = FlutterViewFactory(instanceManager: plugin.proxyApiRegistrar!.instanceManager)
-    registrar.register(viewFactory, withId: "plugins.flutter.io/webview")
+    registrar.register(
+      viewFactory,
+      withId: "plugins.flutter.io/webview",
+      gestureRecognizersBlockingPolicy: FlutterPlatformViewGestureRecognizersBlockingPolicyWaitUntilTouchesEnded
+    )
     registrar.publish(plugin)
   }
 
